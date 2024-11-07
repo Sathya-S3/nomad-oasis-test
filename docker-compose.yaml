@@ -1,7 +1,8 @@
 services:
   # broker for celery
   rabbitmq:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: rabbitmq:3.11.5
     container_name: nomad_oasis_rabbitmq
     environment:
@@ -20,7 +21,8 @@ services:
 
   # the search engine
   elastic:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.1
     container_name: nomad_oasis_elastic
     environment:
@@ -42,7 +44,8 @@ services:
 
   # the user data db
   mongo:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: mongo:5.0.6
     container_name: nomad_oasis_mongo
     environment:
@@ -67,7 +70,8 @@ services:
 
   # nomad worker (processing)
   worker:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: ghcr.io/sathya-s3/nomad-oasis-test:main
     container_name: nomad_oasis_worker
     environment:
@@ -90,7 +94,8 @@ services:
 
   # nomad app (api + proxy)
   app:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: ghcr.io/sathya-s3/nomad-oasis-test:main
     container_name: nomad_oasis_app
     environment:
@@ -129,7 +134,8 @@ services:
 
   # nomad remote tools hub (JupyterHUB, e.g. for AI Toolkit)
   north:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: ghcr.io/sathya-s3/nomad-oasis-test:main
     container_name: nomad_oasis_north
     environment:
@@ -164,7 +170,8 @@ services:
   # nomad logtransfer
   # to enable the logtransfer service run "docker compose --profile with_logtransfer up"
   logtransfer:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: ghcr.io/sathya-s3/nomad-oasis-test:main
     container_name: nomad_oasis_logtransfer
     environment:
@@ -184,7 +191,8 @@ services:
 
   # nomad proxy (a reverse proxy for nomad)
   proxy:
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
     image: nginx:1.13.9-alpine
     container_name: nomad_oasis_proxy
     command: nginx -g 'daemon off;'
