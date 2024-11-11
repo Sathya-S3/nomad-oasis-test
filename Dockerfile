@@ -104,7 +104,8 @@ COPY --chown=nomad:1000 scripts/run.sh .
 COPY --chown=nomad:1000 scripts/run-worker.sh .
 COPY configs/nomad.yaml nomad.yaml
 
-RUN mkdir -p /app/.volumes/fs \
+RUN mkdir -p /opt/venv/lib/python3.12/site-packages/nomad/app/static/gui \
+ && mkdir -p /app/.volumes/fs \
  && chown -R nomad:1000 /app \
  && chown -R nomad:1000 /opt/venv \
  && mkdir nomad \
