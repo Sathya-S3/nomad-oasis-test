@@ -31,7 +31,9 @@ plugins = [
   "nomad-normalizer-plugin-system>=1.0",
   "nomad-normalizer-plugin-simulation-workflow>=1.0",
   "nomad-parser-plugins-electronic>=1.0",
+  "nomad-parser-plugins-atomistic>=1.0",
   "nomad-parser-plugins-workflow>=1.0",
+  "nomad-parser-plugins-database>=1.0",
   #"nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@831f3f0b9fb1b2a74b9c996c893ecff867aa8e5b",
   "nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@63b5a0cfa1c2b6f0686adab0a921629ab5016523",
 ]
