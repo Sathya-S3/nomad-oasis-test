@@ -15,10 +15,9 @@ services:
     volumes:
       - keycloak:/opt/jboss/keycloak/standalone/data
       - ./configs/nomad-realm.json:/tmp/nomad-realm.json
-      - ./load_secrets.sh:/usr/local/bin/load_secrets.sh
-    entrypoint: ["/usr/local/bin/load_secrets.sh"]
-    command:
-      - "-Dkeycloak.import=/tmp/nomad-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
+    # entrypoint: ["/usr/local/bin/load_secrets.sh"]
+    command: ["/bin/sh", "-c", "/usr/local/bin/load_secrets.sh && exec /opt/jboss/keycloak/bin/standalone.sh -b 0.0.0.0 -Dkeycloak.import=/tmp/nomad-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"]
+      # - "-Dkeycloak.import=/tmp/nomad-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
     healthcheck:
       test:
         - "CMD"

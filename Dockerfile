@@ -30,6 +30,7 @@ RUN apt-get update \
        unzip \
        nodejs \
        npm \
+       jq \
        && npm install -g configurable-http-proxy@^4.2.0 \
        # clean cache and logs
        && rm -rf /var/lib/apt/lists/* /var/log/* /var/tmp/* ~/.npm
@@ -102,12 +103,8 @@ FROM base_final AS final
 COPY --chown=nomad:1000 --from=builder /opt/venv /opt/venv
 COPY --chown=nomad:1000 scripts/run.sh .
 COPY --chown=nomad:1000 scripts/run-worker.sh .
+COPY --chown=nomad:1000 load_secrets.sh /usr/local/bin/load_secrets.sh
 COPY configs/nomad.yaml nomad.yaml
-
-RUN apt-get update \
- && apt-get install --yes --quiet --no-install-recommends \
-       jq \
-       && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /app/.volumes/fs \
  && chown -R nomad:1000 /app \
