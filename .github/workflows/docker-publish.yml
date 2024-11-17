@@ -92,3 +92,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            CLIENT_ID=${{ secrets.CLIENT_ID }}
+            CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
+            KEYCLOAK_USER=${{ secrets.KEYCLOAK_USER }}
+            KEYCLOAK_PASSWORD=${{ secrets.KEYCLOAK_PASSWORD }}

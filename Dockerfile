@@ -8,6 +8,17 @@ ARG PYTHON_VERSION=3.12
 
 FROM python:${PYTHON_VERSION}-slim AS base
 
+# Secrets
+ARG CLIENT_ID
+ARG CLIENT_SECRET
+ARG KEYCLOAK_USER
+ARG KEYCLOAK_PASSWORD
+
+ENV CLIENT_ID=${CLIENT_ID}
+ENV CLIENT_SECRET=${CLIENT_SECRET}
+ENV KEYCLOAK_USER=${KEYCLOAK_USER}
+ENV KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+
 # Keeps Python from buffering stdout and stderr to avoid situations where
 # the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
