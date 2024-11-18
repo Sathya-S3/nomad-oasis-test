@@ -18,7 +18,7 @@ keycloak:
   server_url: 'http://keycloak:8080/auth/'
   public_server_url: 'http://localhost/keycloak/auth/'
   realm_name: nomad
-  username: ${KEYCLOAK_USER}
+  username: 'admin'
   password: ${KEYCLOAK_PASSWORD}
 
 meta:
