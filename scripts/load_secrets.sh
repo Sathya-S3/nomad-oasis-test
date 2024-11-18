@@ -14,7 +14,14 @@ echo "PATH: $PATH"
 if ! command -v jq &> /dev/null
 then
     echo
-    echo "jq is installed at $(which jq)"
+    jq_path=$(which jq)
+    echo "jq is installed at $jq_path"
+    if [ -d "$jq_path" ]; then
+        echo "ERROR: $jq_path is a directory, not an executable."
+        exit 1
+    else
+        echo "$jq_path is not a directory" # DEBUGGING
+    fi
     echo "ERROR: The command 'jq' required by this script could not be found. 'jq' might"
     echo "       not be installed on your system. See https://jqlang.github.io/jq for details"
     echo "       regarding how to install 'jq'."
