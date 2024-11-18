@@ -7,14 +7,20 @@ set -e
 echo
 echo "${0} is starting..."
 
+# Print the PATH environment variable (DEBUGGING)
+echo "PATH: $PATH"
+
 # Check if jq is installed
 if ! command -v jq &> /dev/null
 then
     echo
+    echo "jq is installed at $(which jq)"
     echo "ERROR: The command 'jq' required by this script could not be found. 'jq' might"
     echo "       not be installed on your system. See https://jqlang.github.io/jq for details"
     echo "       regarding how to install 'jq'."
     exit 1
+else
+    echo "jq is installed at $(which jq)" # DEBUGGING
 fi
 
 # Read environment variables
