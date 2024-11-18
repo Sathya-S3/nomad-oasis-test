@@ -66,6 +66,12 @@ jobs:
       - name: Install jq package
         run: sudo apt-get update && sudo apt-get install -y jq
 
+      - name: Verify jq installation #temporary addition
+        run: which jq
+
+      - name: Print PATH #temporary addition
+        run: echo $PATH
+
       - name: Make the script executable
         run: chmod +x load_secrets.sh
         
