@@ -4,6 +4,9 @@ services:
     restart: unless-stopped
     image: quay.io/keycloak/keycloak:16.1.1
     container_name: nomad_oasis_keycloak
+    env_file: 
+      - path: ./secrets.env
+        required: true
     environment:
       - PROXY_ADDRESS_FORWARDING=true
       - KEYCLOAK_USER=admin
@@ -137,8 +140,6 @@ services:
       NOMAD_MONGO_HOST: mongo
       NOMAD_LOGSTASH_HOST: logtransfer
       NOMAD_NORTH_HUB_HOST: north
-      CLIENT_ID: ${CLIENT_ID}
-      CLIENT_SECRET: ${CLIENT_SECRET}
     depends_on:
       rabbitmq:
         condition: service_healthy

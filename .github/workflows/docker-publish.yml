@@ -52,57 +52,11 @@ jobs:
             git push origin -o ci.skip # prevent triggering the pipeline again
           fi
 
-  # Job 2: Load keycloak secrets
-  load-secrets:
-    name: Load Keycloak Secrets
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./scripts
-    steps:
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v4
-
-      - name: Install jq package
-        run: |
-          sudo apt-get update && sudo apt-get install -y jq
-          sudo chmod +x /usr/bin/jq
-
-      - name: Verify jq installation #temporary addition
-        run: which jq
-
-      - name: Print PATH #temporary addition
-        run: echo $PATH
-
-      - name: Make the script executable
-        run: chmod +x load_secrets.sh
-        
-      - name: Run secrets loading script
-        run: ./load_secrets.sh
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          KEYCLOAK_USER: ${{ secrets.KEYCLOAK_USER }}
-          KEYCLOAK_PASSWORD: ${{ secrets.KEYCLOAK_PASSWORD }}
-
-      - name: Verify secrets loading
-        run: |
-          if [ -z "$CLIENT_ID" ]; then echo "CLIENT_ID is not set"; exit 1; fi
-          if [ -z "$CLIENT_SECRET" ]; then echo "CLIENT_SECRET is not set"; exit 1; fi
-          if [ -z "$KEYCLOAK_USER" ]; then echo "KEYCLOAK_USER is not set"; exit 1; fi
-          if [ -z "$KEYCLOAK_PASSWORD" ]; then echo "KEYCLOAK_PASSWORD is not set"; exit 1; fi
-          echo "All secrets are set."
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          KEYCLOAK_USER: ${{ secrets.KEYCLOAK_USER }}
-          KEYCLOAK_PASSWORD: ${{ secrets.KEYCLOAK_PASSWORD }}
-
-  # Job 3: Build and Push Docker Image
+  # Job 2: Build and Push Docker Image
   docker-publish:
     name: Build Docker Image
     runs-on: ubuntu-latest
-    needs: [update-lockfile, load-secrets]
+    needs: update-lockfile
 
     strategy:
       fail-fast: false
@@ -138,8 +92,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            CLIENT_ID=${{ secrets.CLIENT_ID }}
-            CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
-            KEYCLOAK_USER=${{ secrets.KEYCLOAK_USER }}
-            KEYCLOAK_PASSWORD=${{ secrets.KEYCLOAK_PASSWORD }}

@@ -161,4 +161,4 @@ cython_debug/
 #.idea/
 
 # Environment variables and authenticatioin files
-.env
+secrets.env
