@@ -38,5 +38,4 @@ elastic:
 
 plugins:
   entry_points:
-    exclude:
-      - "parsers/magres"
+    exclude: ["nomad_plugin.electronicparsers:magres_parser_entry_point"]
