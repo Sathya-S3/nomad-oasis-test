@@ -7,14 +7,19 @@ set -e
 echo
 echo "${0} is starting..."
 
+# Load environment variables from .env file
+set -a
+. ./secrets.env
+set +a
+
 # Check if jq is installed
-if ! command -v jq &> /dev/null
-then
-    echo "ERROR: The command 'jq' required by this script could not be found. 'jq' might"
-    echo "       not be installed on your system. See https://jqlang.github.io/jq for details"
-    echo "       regarding how to install 'jq'."
-    exit 1
-fi
+# if ! command -v /usr/bin/jq &> /dev/null
+# then
+#     echo "ERROR: The command 'jq' required by this script could not be found. 'jq' might"
+#     echo "       not be installed on your system. See https://jqlang.github.io/jq for details"
+#     echo "       regarding how to install 'jq'."
+#     exit 1
+# fi
 
 # Read environment variables
 orcid_clientId=${CLIENT_ID}
@@ -33,7 +38,7 @@ echo
 echo "INFO: Proceeding to insert client ID and client secret into 'configs/nomad-realm.json' file."
 
 # Replace placeholders with environment variables
-jq ".identityProviders[0].config.clientId = \"$orcid_clientId\" | .identityProviders[0].config.clientSecret = \"$orcid_clientSecret\" " configs/nomad-realm.json > configs/nomad-realm.json.tmp && mv configs/nomad-realm.json.tmp configs/nomad-realm.json
+/usr/bin/jq ".identityProviders[0].config.clientId = \"$orcid_clientId\" | .identityProviders[0].config.clientSecret = \"$orcid_clientSecret\" " configs/nomad-realm.json > configs/nomad-realm.json.tmp && mv configs/nomad-realm.json.tmp configs/nomad-realm.json
 
 # Verify that the secrets were correctly inserted
 if jq -e ".identityProviders[0].config.clientId == \"$orcid_clientId\" and .identityProviders[0].config.clientSecret == \"$orcid_clientSecret\"" configs/nomad-realm.json > /dev/null; then
