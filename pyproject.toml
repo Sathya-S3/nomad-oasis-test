@@ -35,7 +35,7 @@ plugins = [
   "nomad-parser-plugins-atomistic>=1.0",
   "nomad-parser-plugins-workflow>=1.0",
   "nomad-parser-plugins-database>=1.0",
-  "nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@b6dfc66c185681987af9af95a76d815a38e084c2",
+  "nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@62abc940d9f67e5f89de5ae46dd8103939ecaf33",
   #"nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@63b5a0cfa1c2b6f0686adab0a921629ab5016523", (last commit on develop branch)
 ]
 jupyter = []
