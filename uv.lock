@@ -3662,7 +3662,7 @@ requires-dist = [
     { name = "nomad-normalizer-plugin-soap", marker = "extra == 'plugins'", specifier = ">=1.0" },
     { name = "nomad-normalizer-plugin-spectra", marker = "extra == 'plugins'", specifier = ">=1.0" },
     { name = "nomad-normalizer-plugin-system", marker = "extra == 'plugins'", specifier = ">=1.0" },
-    { name = "nomad-parser-magres", marker = "extra == 'plugins'", git = "https://github.com/CCP-NC/nomad-parser-magres.git?rev=14c10ca8d132b44a861942cf97444d9765a9ba3b#14c10ca8d132b44a861942cf97444d9765a9ba3b" },
+    { name = "nomad-parser-magres", marker = "extra == 'plugins'", git = "https://github.com/CCP-NC/nomad-parser-magres.git?rev=ece219a433fe105ccf53edec3f342f805eb869c9" },
     { name = "nomad-parser-plugins-atomistic", marker = "extra == 'plugins'", specifier = ">=1.0" },
     { name = "nomad-parser-plugins-database", marker = "extra == 'plugins'", specifier = ">=1.0" },
     { name = "nomad-parser-plugins-electronic", marker = "extra == 'plugins'", specifier = ">=1.0" },
@@ -3884,8 +3884,8 @@ wheels = [
 
 [[package]]
 name = "nomad-parser-magres"
-version = "0.1.dev54+g14c10ca"
-source = { git = "https://github.com/CCP-NC/nomad-parser-magres.git?rev=14c10ca8d132b44a861942cf97444d9765a9ba3b#14c10ca8d132b44a861942cf97444d9765a9ba3b" }
+version = "0.1.dev56+gece219a"
+source = { git = "https://github.com/CCP-NC/nomad-parser-magres.git?rev=ece219a433fe105ccf53edec3f342f805eb869c9#ece219a433fe105ccf53edec3f342f805eb869c9" }
 dependencies = [
     { name = "nomad-lab" },
     { name = "nomad-simulations" },
