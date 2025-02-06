@@ -35,7 +35,7 @@ plugins = [
   "nomad-parser-plugins-atomistic>=1.0",
   "nomad-parser-plugins-workflow>=1.0",
   "nomad-parser-plugins-database>=1.0",
-  "nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@ece219a433fe105ccf53edec3f342f805eb869c9",
+  "nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@6d14ed85972bbe74b38a19a1766562d8f19e694c",
   #"nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@7620d7bb0c29aeed9fdf203689ffe5aa6a0ce5bb", (electric field gradient extraction fixed)
   #"nomad-parser-magres @ git+https://github.com/CCP-NC/nomad-parser-magres.git@63b5a0cfa1c2b6f0686adab0a921629ab5016523", (last commit on develop branch)
 ]
